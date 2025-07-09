@@ -374,7 +374,7 @@ def vital_signs(request):
         "Authorization": "Bearer %s" % access_token
     }
     response = requests.get(get_lab_results_url, headers=headers)
-    print(response.text)
+    
     patient_json = response.json()
     fhir_observation_bundle = Bundle(patient_json)
     
