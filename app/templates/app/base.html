@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django SMART on FHIR</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <main>
+        {% if messages %}
+            {% for message in messages %}
+                {% if 'success' in message.tags %}
+                    <div class="alert alert-border-success alert-dismissible fade show">
+                        <div class="d-flex align-items-center">
+                            <div class="font-35 text-success">
+                                <span class="material-icons-outlined fs-2">check_circle</span>
+                            </div>
+                            <div class="ms-3">
+                                <div class="">{{ message }}</div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% else %}
+                    <div class="alert alert-border-danger alert-dismissible fade show">
+                        <div class="d-flex align-items-center">
+                            <div class="font-35 text-danger">
+                                <span class="material-icons-outlined fs-2">report_gmailerrorred</span>
+                            </div>
+                            <div class="ms-3">
+                                <div class="">{{ message }}</div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

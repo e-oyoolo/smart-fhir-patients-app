@@ -1,0 +1,12 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="content mt-4">
+        <h1>Hello, {{ fhir_patient.name.0.given.0 }}</h1>
+        <p class="mt-2">Welcome to your Patient Record!</p>
+        <p><span style="font-weight: 600;">Full Name: </span> {{ fhir_patient.name.0.text }}</p>
+        <p><span style="font-weight: 600;">Epic Identifier : </span> {{ epic_identifier }}</p>
+        <p><span style="font-weight: 600;">Date of birth : </span> {{ fhir_patient.birthDate.isostring }}</p>
+        <p><span style="font-weight: 600;">Gender : </span> {{ fhir_patient.gender }}</p>
+    </div>
+{% endblock %}

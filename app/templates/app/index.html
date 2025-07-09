@@ -1,0 +1,13 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+    <form action="{% url 'app:initiate_auth' %}" method="post">
+        {% csrf_token %}
+
+        {% if token_response %}
+            {{ token_response }}
+        {% else %}
+            <button type="submit" class="login-button">Sign in with Epic</button>
+        {% endif %}
+    </form>
+{% endblock %}

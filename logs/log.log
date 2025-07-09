@@ -1,0 +1,646 @@
+[09/Jul/2025 10:47:45] ERROR [django.request:253] Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\_Django\env_smart_fhir_patient_app\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_Django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_Django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_Django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_Django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\_Django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loader_tags.py", line 134, in render
+    compiled_parent = self.get_parent(context)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_Django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loader_tags.py", line 131, in get_parent
+    return self.find_template(parent, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_Django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loader_tags.py", line 109, in find_template
+    template, origin = context.template.engine.find_template(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_Django\env_smart_fhir_patient_app\Lib\site-packages\django\template\engine.py", line 163, in find_template
+    raise TemplateDoesNotExist(name, tried=tried)
+django.template.exceptions.TemplateDoesNotExist: accounts/base.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\_Django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_Django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_Django\env_smart_fhir_patient_app\patient_app\app\views.py", line 108, in index
+    return render(request, 'app/index.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_Django\env_smart_fhir_patient_app\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_Django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_Django\env_smart_fhir_patient_app\Lib\site-packages\django\template\backends\django.py", line 109, in render
+    reraise(exc, self.backend)
+  File "C:\_Django\env_smart_fhir_patient_app\Lib\site-packages\django\template\backends\django.py", line 130, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: accounts/base.html
+[09/Jul/2025 10:47:45] ERROR [django.server:213] "GET / HTTP/1.1" 500 126334
+[09/Jul/2025 11:05:46] ERROR [django.request:253] Internal Server Error: /api/callback/
+Traceback (most recent call last):
+  File "C:\_Django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_Django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_Django\env_smart_fhir_patient_app\patient_app\app\views.py", line 77, in oauth_callback
+    if request.session[os.getenv('TOKEN_RESPONSE_LOCAL_STORAGE_KEY')]:
+       ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_Django\env_smart_fhir_patient_app\Lib\site-packages\django\contrib\sessions\backends\base.py", line 55, in __getitem__
+    return self._session[key]
+           ~~~~~~~~~~~~~^^^^^
+KeyError: 'smart_token_response'
+[09/Jul/2025 11:05:46] ERROR [django.server:213] "GET /api/callback/?code=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1cm46b2lkOjEuMi44NDAuMTE0MzUwLjEuMTMuMC4xLjcuMy42ODg4ODQuMTAwIiwiY2xpZW50X2lkIjoiMzRlZTIyODUtYmVlNC00OWUwLWE0NTQtNGZmMzc0YmU0ZDMzIiwiZXBpYy5lY2kiOiJ1cm46ZXBpYzpPcGVuLkVwaWMtY3VycmVudCIsImVwaWMubWV0YWRhdGEiOiJndHBibGVQZXExNWNYVXBZem10UTlKOHRwMDJSbzR2eDlWRzBuMEh5TExHbmsxSXlmekd4VmF5c281Z0VTeEo1VVRUWlRsUGY0TjE1UEVPSFJZb0NaSU5qeEV6ZUpOSlp5TE9lSjBpQVdOSXA2a09UbTQ0aGZDRFVMY0Y0dktfRCIsImVwaWMudG9rZW50eXBlIjoiY29kZSIsImV4cCI6MTc1MjA0ODY0NiwiaWF0IjoxNzUyMDQ4MzQ2LCJpc3MiOiJ1cm46b2lkOjEuMi44NDAuMTE0MzUwLjEuMTMuMC4xLjcuMy42ODg4ODQuMTAwIiwianRpIjoiNTJlNjY5ZTQtMGUxMS00NjcyLTk0MDEtZDJiZTUwMTRlM2VkIiwibmJmIjoxNzUyMDQ4MzQ2LCJzdWIiOiJlYjRHaWE3RnlpanRQbVhrcnRqUnBQdzMifQ.WI8shLo07Ig8deHjoRzLYAHXvsUcza4gwQ-VfCKBL1KZj-RGArSXED7VfR2bwfxXwthnbAyxWwQJGo_rIDoPBJ0uOhsUiQB41kmlws8MAsFvASzPRkM7TcY-jOcTKUpDQ5m2-vC9w-54HOv4rJDnbUMahPe0M_JV1E08fO8I_W6zYfuMAus-y5dFXY0f8t_QU5TMcpmMIzh4GNcMg7zPni9Oof5Zi3pWyBw8MxeUd_ebldJV8uJ2TY7gaUUy2L2mEuBjH-zRYCVX9qRCOL6QWztYRnsQissHDRbJMOAEqdD8zzZ_U4bCn5l9VXxLCDdGbSDowtG3qDf9tEOz00DBNw HTTP/1.1" 500 79674
+[09/Jul/2025 11:07:49] ERROR [django.request:253] Internal Server Error: /api/callback/
+Traceback (most recent call last):
+  File "C:\_Django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_Django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_Django\env_smart_fhir_patient_app\patient_app\app\views.py", line 77, in oauth_callback
+    if request.session[os.getenv('TOKEN_RESPONSE_LOCAL_STORAGE_KEY')]:
+       ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_Django\env_smart_fhir_patient_app\Lib\site-packages\django\contrib\sessions\backends\base.py", line 55, in __getitem__
+    return self._session[key]
+           ~~~~~~~~~~~~~^^^^^
+KeyError: 'smart_token_response'
+[09/Jul/2025 11:07:49] ERROR [django.server:213] "GET /api/callback/?code=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1cm46b2lkOjEuMi44NDAuMTE0MzUwLjEuMTMuMC4xLjcuMy42ODg4ODQuMTAwIiwiY2xpZW50X2lkIjoiMzRlZTIyODUtYmVlNC00OWUwLWE0NTQtNGZmMzc0YmU0ZDMzIiwiZXBpYy5lY2kiOiJ1cm46ZXBpYzpPcGVuLkVwaWMtY3VycmVudCIsImVwaWMubWV0YWRhdGEiOiJfczBqSXFlNmNDc1dmeEZtNW1pa2h2ZlJqd21TLXF3WFNlZktQa2NwejduamIxZHoteTVhUVo3VGpDSFdUY3BMSVVtSnRVWjZQZ1RMNFZqWHhCenMxSjdPWjBMcENtQ3cyTmtMTU9kMlN5ZFZ5bHN0STlheXhjMHY2NDctelJPMSIsImVwaWMudG9rZW50eXBlIjoiY29kZSIsImV4cCI6MTc1MjA0ODc2OSwiaWF0IjoxNzUyMDQ4NDY5LCJpc3MiOiJ1cm46b2lkOjEuMi44NDAuMTE0MzUwLjEuMTMuMC4xLjcuMy42ODg4ODQuMTAwIiwianRpIjoiYWJlNmQyNmItN2EyZS00YTE0LWE2NjEtNTk3ZDJmMjk2ZmI5IiwibmJmIjoxNzUyMDQ4NDY5LCJzdWIiOiJlYjRHaWE3RnlpanRQbVhrcnRqUnBQdzMifQ.VZPAIYtFWdqWshpjOQvBksPSyNas6mkEOMCIrPTLB2paFkNwnBFpWwH1Q-iuQjl3N35fRn8Cy6uvwhoCTn4BqGuHdLGzW_5qASupc3ZXrydxbIqJH14t3FsUnHtFlVSHkRr9KePu4Gj2JrsLS7w7cLH-z5H8ToQntdJqEfIE3WV3h5JbNCWWPnzWpdjwMFOTAHzzF5HGcWOufhcg6xvnQ6wUnmYIxy8ktOJgzoGuW6MMqLayrYUf7yrCxZnlPCTWCoLdu3nYnJnvoH9IslWEha9N2O9DRC7HNy24y1RG83rg8P9Ow5mfhlsE8gJPWnIOYBXfuQAJum22GKC8hprSWQ HTTP/1.1" 500 79674
+[09/Jul/2025 11:53:18] ERROR [django.request:253] Internal Server Error: /patient-details/
+Traceback (most recent call last):
+  File "C:\_Django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_Django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_Django\env_smart_fhir_patient_app\patient_app\app\views.py", line 127, in patient_details
+    access_token = json.loads(token_response)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\json\__init__.py", line 339, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+TypeError: the JSON object must be str, bytes or bytearray, not dict
+[09/Jul/2025 11:53:18] ERROR [django.server:213] "GET /patient-details/ HTTP/1.1" 500 80389
+[09/Jul/2025 11:53:40] ERROR [django.request:253] Internal Server Error: /patient-details/
+Traceback (most recent call last):
+  File "C:\_Django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_Django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_Django\env_smart_fhir_patient_app\patient_app\app\views.py", line 127, in patient_details
+    access_token = json.dumps(json.loads(token_response))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\json\__init__.py", line 339, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+TypeError: the JSON object must be str, bytes or bytearray, not dict
+[09/Jul/2025 11:53:40] ERROR [django.server:213] "GET /patient-details/ HTTP/1.1" 500 80435
+[09/Jul/2025 11:54:30] ERROR [django.request:253] Internal Server Error: /patient-details/
+Traceback (most recent call last):
+  File "C:\_Django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_Django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_Django\env_smart_fhir_patient_app\patient_app\app\views.py", line 128, in patient_details
+    access_token = json.dumps(json.loads(token_response))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\json\__init__.py", line 339, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+TypeError: the JSON object must be str, bytes or bytearray, not dict
+[09/Jul/2025 11:54:30] ERROR [django.server:213] "GET /patient-details/ HTTP/1.1" 500 80462
+[09/Jul/2025 07:06:04] ERROR [django.request:253] Internal Server Error: /auth/
+Traceback (most recent call last):
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\smart-fhir-patient-app\app\views.py", line 74, in initiate_auth
+    return redirect('app:patient-details')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\shortcuts.py", line 51, in redirect
+    resolve_url(to, *args, **kwargs),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\shortcuts.py", line 184, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'patient-details' not found. 'patient-details' is not a valid view function or pattern name.
+[09/Jul/2025 07:06:04] ERROR [django.server:213] "POST /auth/ HTTP/1.1" 500 96533
+[09/Jul/2025 07:07:17] ERROR [django.request:253] Internal Server Error: /auth/
+Traceback (most recent call last):
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\smart-fhir-patient-app\app\views.py", line 74, in initiate_auth
+    return redirect('app:patient-details')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\shortcuts.py", line 51, in redirect
+    resolve_url(to, *args, **kwargs),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\shortcuts.py", line 184, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'patient-details' not found. 'patient-details' is not a valid view function or pattern name.
+[09/Jul/2025 07:07:17] ERROR [django.server:213] "POST /auth/ HTTP/1.1" 500 96533
+[09/Jul/2025 07:22:05] ERROR [django.request:253] Internal Server Error: /patient-details/
+Traceback (most recent call last):
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\smart-fhir-patient-app\app\views.py", line 149, in patient_details
+    return render(request, 'app/patient-details.html', context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 489, in parse
+    raise self.error(token, e)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 487, in parse
+    filter_expression = self.compile_filter(token.contents)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 710, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '[0].given' from 'fhir_patient.name[0].given'
+[09/Jul/2025 07:22:05] ERROR [django.server:213] "GET /patient-details/ HTTP/1.1" 500 179166
+[09/Jul/2025 07:22:39] ERROR [django.request:253] Internal Server Error: /patient-details/
+Traceback (most recent call last):
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\smart-fhir-patient-app\app\views.py", line 145, in patient_details
+    print(fhir_patient.name.json())
+          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'json'
+[09/Jul/2025 07:22:39] ERROR [django.server:213] "GET /patient-details/ HTTP/1.1" 500 79205
+[09/Jul/2025 07:22:58] ERROR [django.request:253] Internal Server Error: /patient-details/
+Traceback (most recent call last):
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\smart-fhir-patient-app\app\views.py", line 149, in patient_details
+    return render(request, 'app/patient-details.html', context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 489, in parse
+    raise self.error(token, e)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 487, in parse
+    filter_expression = self.compile_filter(token.contents)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 710, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '[0].given' from 'fhir_patient.name[0].given'
+[09/Jul/2025 07:22:58] ERROR [django.server:213] "GET /patient-details/ HTTP/1.1" 500 179169
+[09/Jul/2025 07:23:42] ERROR [django.request:253] Internal Server Error: /patient-details/
+Traceback (most recent call last):
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\smart-fhir-patient-app\app\views.py", line 149, in patient_details
+    return render(request, 'app/patient-details.html', context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 489, in parse
+    raise self.error(token, e)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 487, in parse
+    filter_expression = self.compile_filter(token.contents)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 710, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '[0].given' from 'fhir_patient.name[0].given'
+[09/Jul/2025 07:23:42] ERROR [django.server:213] "GET /patient-details/ HTTP/1.1" 500 179175
+[09/Jul/2025 07:24:44] ERROR [django.request:253] Internal Server Error: /patient-details/
+Traceback (most recent call last):
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\smart-fhir-patient-app\app\views.py", line 148, in patient_details
+    'name': fhir_patient.name[0].given.join(' ')
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'join'
+[09/Jul/2025 07:24:44] ERROR [django.server:213] "GET /patient-details/ HTTP/1.1" 500 78970
+[09/Jul/2025 07:34:22] ERROR [django.request:253] Internal Server Error: /patient-details/
+Traceback (most recent call last):
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\smart-fhir-patient-app\app\views.py", line 145, in patient_details
+    print(fhir_patient.identifier.find('EPIC'))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'find'
+[09/Jul/2025 07:34:22] ERROR [django.server:213] "GET /patient-details/ HTTP/1.1" 500 79433
+[09/Jul/2025 07:50:03] ERROR [django.request:253] Internal Server Error: /patient-details/
+Traceback (most recent call last):
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\smart-fhir-patient-app\app\views.py", line 162, in patient_details
+    return render(request, 'app/patient-details.html', context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 489, in parse
+    raise self.error(token, e)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 487, in parse
+    filter_expression = self.compile_filter(token.contents)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 710, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '-m-d' from 'fhir_patient.birthDate | date:y-m-d'
+[09/Jul/2025 07:50:03] ERROR [django.server:213] "GET /patient-details/ HTTP/1.1" 500 187236
+[09/Jul/2025 07:50:30] ERROR [django.request:253] Internal Server Error: /patient-details/
+Traceback (most recent call last):
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\smart-fhir-patient-app\app\views.py", line 162, in patient_details
+    return render(request, 'app/patient-details.html', context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 489, in parse
+    raise self.error(token, e)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 487, in parse
+    filter_expression = self.compile_filter(token.contents)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 710, in __init__
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '-m-d' from 'fhir_patient.birthDate | date:Y-m-d'
+[09/Jul/2025 07:50:30] ERROR [django.server:213] "GET /patient-details/ HTTP/1.1" 500 187236
+[09/Jul/2025 08:13:41] ERROR [django.request:253] Internal Server Error: /patient-details/
+Traceback (most recent call last):
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\smart-fhir-patient-app\app\views.py", line 162, in patient_details
+    fhir_patient = Patient(patient_json)
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\fhirclient\models\patient.py", line 98, in __init__
+    super(Patient, self).__init__(jsondict=jsondict, strict=strict)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\fhirclient\models\domainresource.py", line 39, in __init__
+    super(DomainResource, self).__init__(jsondict=jsondict, strict=strict)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\fhirclient\models\resource.py", line 39, in __init__
+    super(Resource, self).__init__(jsondict=jsondict, strict=strict)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\fhirclient\models\fhirabstractresource.py", line 25, in __init__
+    super(FHIRAbstractResource, self).__init__(jsondict=jsondict, strict=strict)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\fhirclient\models\fhirabstractbase.py", line 66, in __init__
+    self.update_with_json(jsondict)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\fhirclient\models\fhirabstractbase.py", line 159, in update_with_json
+    raise FHIRValidationError("Non-dict type {} fed to `update_with_json` on {}"
+fhirclient.models.fhirabstractbase.FHIRValidationError: {root}:
+  Non-dict type <class 'str'> fed to `update_with_json` on <class 'fhirclient.models.patient.Patient'>
+[09/Jul/2025 08:13:41] ERROR [django.server:213] "GET /patient-details/ HTTP/1.1" 500 100848
+[09/Jul/2025 08:14:15] ERROR [django.request:253] Internal Server Error: /auth/
+Traceback (most recent call last):
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\smart-fhir-patient-app\app\views.py", line 71, in initiate_auth
+    issued_at = request.session['issued_at']
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\contrib\sessions\backends\base.py", line 55, in __getitem__
+    return self._session[key]
+           ~~~~~~~~~~~~~^^^^^
+KeyError: 'issued_at'
+[09/Jul/2025 08:14:15] ERROR [django.server:213] "POST /auth/ HTTP/1.1" 500 75079
+[09/Jul/2025 08:36:01] ERROR [django.request:253] Internal Server Error: /api/callback/
+Traceback (most recent call last):
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\utils\deprecation.py", line 122, in __call__
+    response = self.process_response(request, response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\contrib\sessions\middleware.py", line 59, in process_response
+    request.session.save()
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\contrib\sessions\backends\db.py", line 123, in save
+    obj = self.create_model_instance(data)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\contrib\sessions\backends\db.py", line 102, in create_model_instance
+    session_data=self.encode(data),
+                 ^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\contrib\sessions\backends\base.py", line 124, in encode
+    return signing.dumps(
+           ^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\signing.py", line 150, in dumps
+    return TimestampSigner(key=key, salt=salt).sign_object(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\signing.py", line 225, in sign_object
+    data = serializer().dumps(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\signing.py", line 125, in dumps
+    return json.dumps(obj, separators=(",", ":")).encode("latin-1")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python311\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "C:\Python311\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python311\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Python311\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type datetime is not JSON serializable
+[09/Jul/2025 08:36:01] ERROR [django.server:213] "GET /api/callback/?code=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1cm46b2lkOjEuMi44NDAuMTE0MzUwLjEuMTMuMC4xLjcuMy42ODg4ODQuMTAwIiwiY2xpZW50X2lkIjoiMzRlZTIyODUtYmVlNC00OWUwLWE0NTQtNGZmMzc0YmU0ZDMzIiwiZXBpYy5lY2kiOiJ1cm46ZXBpYzpPcGVuLkVwaWMtY3VycmVudCIsImVwaWMubWV0YWRhdGEiOiJzZUc0WjZPQ0ZWemRNcVJ0Q3E3T2ZfZjNIa3Q5M3ZJLUR3LW9JM2lRTWMxUU9uV0dVUGJ1OGRVT05KMXJCR0t1Q3c0UzNqMGJ1YTl4LWhQekJnaWpJdnY0UzdOWE8zU0hNVFV5Qkg1M0k2RzRGNEpuTm1qS0lTN2s0c1ZjUHpHeSIsImVwaWMudG9rZW50eXBlIjoiY29kZSIsImV4cCI6MTc1MjA2NDgxOSwiaWF0IjoxNzUyMDY0NTE5LCJpc3MiOiJ1cm46b2lkOjEuMi44NDAuMTE0MzUwLjEuMTMuMC4xLjcuMy42ODg4ODQuMTAwIiwianRpIjoiODhhYmU4NDAtMzM3ZC00MzJmLTg5ZmItNDcyNmI5OWY5MmJkIiwibmJmIjoxNzUyMDY0NTE5LCJzdWIiOiJlYjRHaWE3RnlpanRQbVhrcnRqUnBQdzMifQ.ddSHR_HxiboYZM77pMA1RADfKTRazsYytktbU-5abi8QaRzw9PDC4WcLZp6RT3v43n3yW9EhIf6Kv5IzHAZVsY-Gj_ELOMKop3ydAkmMK_5Y57Xc_I7tLRctYxajardr_Qm5MijGbiPIdcg27pB5ZrZo2V_NgPrq6dYBSnScNwdnTEZWE5kvTSIFGCcz-2PnOP4EsNUr2NVhjP4TXy88PANtYCEykOu6ztZ04MhiUroTYkN4KkOkKn0j7DWTlNL1ep7mWOmblBmFWSjHlHyz0LkeZb5lDNB8tTPskaaF6BVZOg7ec5Is8Vdh-77Fj6cmLHwn-yL9v5lubWpxTU5MPg HTTP/1.1" 500 161504
