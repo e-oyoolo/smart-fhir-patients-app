@@ -644,3 +644,262 @@ Traceback (most recent call last):
     raise TypeError(f'Object of type {o.__class__.__name__} '
 TypeError: Object of type datetime is not JSON serializable
 [09/Jul/2025 08:36:01] ERROR [django.server:213] "GET /api/callback/?code=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1cm46b2lkOjEuMi44NDAuMTE0MzUwLjEuMTMuMC4xLjcuMy42ODg4ODQuMTAwIiwiY2xpZW50X2lkIjoiMzRlZTIyODUtYmVlNC00OWUwLWE0NTQtNGZmMzc0YmU0ZDMzIiwiZXBpYy5lY2kiOiJ1cm46ZXBpYzpPcGVuLkVwaWMtY3VycmVudCIsImVwaWMubWV0YWRhdGEiOiJzZUc0WjZPQ0ZWemRNcVJ0Q3E3T2ZfZjNIa3Q5M3ZJLUR3LW9JM2lRTWMxUU9uV0dVUGJ1OGRVT05KMXJCR0t1Q3c0UzNqMGJ1YTl4LWhQekJnaWpJdnY0UzdOWE8zU0hNVFV5Qkg1M0k2RzRGNEpuTm1qS0lTN2s0c1ZjUHpHeSIsImVwaWMudG9rZW50eXBlIjoiY29kZSIsImV4cCI6MTc1MjA2NDgxOSwiaWF0IjoxNzUyMDY0NTE5LCJpc3MiOiJ1cm46b2lkOjEuMi44NDAuMTE0MzUwLjEuMTMuMC4xLjcuMy42ODg4ODQuMTAwIiwianRpIjoiODhhYmU4NDAtMzM3ZC00MzJmLTg5ZmItNDcyNmI5OWY5MmJkIiwibmJmIjoxNzUyMDY0NTE5LCJzdWIiOiJlYjRHaWE3RnlpanRQbVhrcnRqUnBQdzMifQ.ddSHR_HxiboYZM77pMA1RADfKTRazsYytktbU-5abi8QaRzw9PDC4WcLZp6RT3v43n3yW9EhIf6Kv5IzHAZVsY-Gj_ELOMKop3ydAkmMK_5Y57Xc_I7tLRctYxajardr_Qm5MijGbiPIdcg27pB5ZrZo2V_NgPrq6dYBSnScNwdnTEZWE5kvTSIFGCcz-2PnOP4EsNUr2NVhjP4TXy88PANtYCEykOu6ztZ04MhiUroTYkN4KkOkKn0j7DWTlNL1ep7mWOmblBmFWSjHlHyz0LkeZb5lDNB8tTPskaaF6BVZOg7ec5Is8Vdh-77Fj6cmLHwn-yL9v5lubWpxTU5MPg HTTP/1.1" 500 161504
+[09/Jul/2025 09:12:33] ERROR [django.request:253] Internal Server Error: /medication-details/
+Traceback (most recent call last):
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\smart-fhir-patient-app\app\views.py", line 207, in medication_details
+    fhir_patient = Patient(patient_json)
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\fhirclient\models\patient.py", line 98, in __init__
+    super(Patient, self).__init__(jsondict=jsondict, strict=strict)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\fhirclient\models\domainresource.py", line 39, in __init__
+    super(DomainResource, self).__init__(jsondict=jsondict, strict=strict)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\fhirclient\models\resource.py", line 39, in __init__
+    super(Resource, self).__init__(jsondict=jsondict, strict=strict)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\fhirclient\models\fhirabstractresource.py", line 22, in __init__
+    raise Exception("Attempting to instantiate {} with resource data that defines a resourceType of \"{}\""
+Exception: Attempting to instantiate <class 'fhirclient.models.patient.Patient'> with resource data that defines a resourceType of "OperationOutcome"
+[09/Jul/2025 09:12:33] ERROR [django.server:213] "GET /medication-details/ HTTP/1.1" 500 96715
+[09/Jul/2025 09:13:09] ERROR [django.request:253] Internal Server Error: /medication-details/
+Traceback (most recent call last):
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\smart-fhir-patient-app\app\views.py", line 207, in medication_details
+    fhir_medication = Medication(patient_json)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\fhirclient\models\medication.py", line 57, in __init__
+    super(Medication, self).__init__(jsondict=jsondict, strict=strict)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\fhirclient\models\domainresource.py", line 39, in __init__
+    super(DomainResource, self).__init__(jsondict=jsondict, strict=strict)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\fhirclient\models\resource.py", line 39, in __init__
+    super(Resource, self).__init__(jsondict=jsondict, strict=strict)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\fhirclient\models\fhirabstractresource.py", line 22, in __init__
+    raise Exception("Attempting to instantiate {} with resource data that defines a resourceType of \"{}\""
+Exception: Attempting to instantiate <class 'fhirclient.models.medication.Medication'> with resource data that defines a resourceType of "OperationOutcome"
+[09/Jul/2025 09:13:09] ERROR [django.server:213] "GET /medication-details/ HTTP/1.1" 500 96775
+[09/Jul/2025 09:14:11] ERROR [django.request:253] Internal Server Error: /medication-details/
+Traceback (most recent call last):
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\smart-fhir-patient-app\app\views.py", line 207, in medication_details
+    fhir_medication = Medication(patient_json)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\fhirclient\models\medication.py", line 57, in __init__
+    super(Medication, self).__init__(jsondict=jsondict, strict=strict)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\fhirclient\models\domainresource.py", line 39, in __init__
+    super(DomainResource, self).__init__(jsondict=jsondict, strict=strict)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\fhirclient\models\resource.py", line 39, in __init__
+    super(Resource, self).__init__(jsondict=jsondict, strict=strict)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\fhirclient\models\fhirabstractresource.py", line 22, in __init__
+    raise Exception("Attempting to instantiate {} with resource data that defines a resourceType of \"{}\""
+Exception: Attempting to instantiate <class 'fhirclient.models.medication.Medication'> with resource data that defines a resourceType of "OperationOutcome"
+[09/Jul/2025 09:14:11] ERROR [django.server:213] "GET /medication-details/ HTTP/1.1" 500 96795
+[09/Jul/2025 09:14:36] ERROR [django.request:253] Internal Server Error: /medication-details/
+Traceback (most recent call last):
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\smart-fhir-patient-app\app\views.py", line 207, in medication_details
+    fhir_medication = Medication(patient_json)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\fhirclient\models\medication.py", line 57, in __init__
+    super(Medication, self).__init__(jsondict=jsondict, strict=strict)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\fhirclient\models\domainresource.py", line 39, in __init__
+    super(DomainResource, self).__init__(jsondict=jsondict, strict=strict)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\fhirclient\models\resource.py", line 39, in __init__
+    super(Resource, self).__init__(jsondict=jsondict, strict=strict)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\fhirclient\models\fhirabstractresource.py", line 22, in __init__
+    raise Exception("Attempting to instantiate {} with resource data that defines a resourceType of \"{}\""
+Exception: Attempting to instantiate <class 'fhirclient.models.medication.Medication'> with resource data that defines a resourceType of "Bundle"
+[09/Jul/2025 09:14:36] ERROR [django.server:213] "GET /medication-details/ HTTP/1.1" 500 118017
+[09/Jul/2025 09:20:43] ERROR [django.request:253] Internal Server Error: /medication-details/
+Traceback (most recent call last):
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\smart-fhir-patient-app\app\views.py", line 245, in medication_details
+    medications_list = extract_medications_from_bundle(fhir_medication_bundle)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\smart-fhir-patient-app\app\views.py", line 193, in extract_medications_from_bundle
+    for entry in bundle.get("entry", []):
+                 ^^^^^^^^^^
+AttributeError: 'Bundle' object has no attribute 'get'
+[09/Jul/2025 09:20:43] ERROR [django.server:213] "GET /medication-details/ HTTP/1.1" 500 82966
+[09/Jul/2025 09:21:13] ERROR [django.request:253] Internal Server Error: /medication-details/
+Traceback (most recent call last):
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\smart-fhir-patient-app\app\views.py", line 245, in medication_details
+    medications_list = extract_medications_from_bundle(fhir_medication_bundle)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\smart-fhir-patient-app\app\views.py", line 193, in extract_medications_from_bundle
+    for entry in bundle.get("entry", []):
+                 ^^^^^^^^^^
+AttributeError: 'Bundle' object has no attribute 'get'
+[09/Jul/2025 09:21:13] ERROR [django.server:213] "GET /medication-details/ HTTP/1.1" 500 82971
+[09/Jul/2025 09:22:45] ERROR [django.request:253] Internal Server Error: /medication-details/
+Traceback (most recent call last):
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\smart-fhir-patient-app\app\views.py", line 244, in medication_details
+    medications_list = extract_medications_from_bundle(fhir_medication_bundle)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'extract_medications_from_bundle' is not defined
+[09/Jul/2025 09:22:45] ERROR [django.server:213] "GET /medication-details/ HTTP/1.1" 500 79003
+[09/Jul/2025 09:41:22] ERROR [django.request:253] Internal Server Error: /medication-details/
+Traceback (most recent call last):
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\smart-fhir-patient-app\app\views.py", line 245, in medication_details
+    fhir_medication_bundle = Bundle(patient_json)
+                             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\fhirclient\models\bundle.py", line 52, in __init__
+    super(Bundle, self).__init__(jsondict=jsondict, strict=strict)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\fhirclient\models\resource.py", line 39, in __init__
+    super(Resource, self).__init__(jsondict=jsondict, strict=strict)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\fhirclient\models\fhirabstractresource.py", line 25, in __init__
+    super(FHIRAbstractResource, self).__init__(jsondict=jsondict, strict=strict)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\fhirclient\models\fhirabstractbase.py", line 66, in __init__
+    self.update_with_json(jsondict)
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\fhirclient\models\fhirabstractbase.py", line 159, in update_with_json
+    raise FHIRValidationError("Non-dict type {} fed to `update_with_json` on {}"
+fhirclient.models.fhirabstractbase.FHIRValidationError: {root}:
+  Non-dict type <class 'str'> fed to `update_with_json` on <class 'fhirclient.models.bundle.Bundle'>
+[09/Jul/2025 09:41:22] ERROR [django.server:213] "GET /medication-details/ HTTP/1.1" 500 96296
+[09/Jul/2025 10:02:05] ERROR [django.request:253] Internal Server Error: /lab-results/
+Traceback (most recent call last):
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\smart-fhir-patient-app\app\views.py", line 277, in lab_results
+    return render(request, 'app/medication-details.html', context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\template\defaulttags.py", line 198, in render
+    values = list(values)
+             ^^^^^^^^^^^^
+TypeError: 'Bundle' object is not iterable
+[09/Jul/2025 10:02:05] ERROR [django.server:213] "GET /lab-results/ HTTP/1.1" 500 160806
+[09/Jul/2025 10:03:15] ERROR [django.request:253] Internal Server Error: /lab-results/
+Traceback (most recent call last):
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\smart-fhir-patient-app\app\views.py", line 275, in lab_results
+    'medications_list': Bundle.parse_obj(fhir_medication_bundle)
+                        ^^^^^^^^^^^^^^^^
+AttributeError: type object 'Bundle' has no attribute 'parse_obj'
+[09/Jul/2025 10:03:15] ERROR [django.server:213] "GET /lab-results/ HTTP/1.1" 500 78994
+[09/Jul/2025 10:28:14] ERROR [django.request:253] Internal Server Error: /lab-results/
+Traceback (most recent call last):
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\smart-fhir-patient-app\app\views.py", line 309, in lab_results
+    lab_results_list = extract_laboratory_observations(fhir_observation_bundle)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: extract_laboratory_observations() missing 1 required positional argument: 'category'
+[09/Jul/2025 10:28:14] ERROR [django.server:213] "GET /lab-results/ HTTP/1.1" 500 79497
+[09/Jul/2025 10:29:40] ERROR [django.request:253] Internal Server Error: /vital-signs/
+Traceback (most recent call last):
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_django\env_smart_fhir_patient_app\smart-fhir-patient-app\app\views.py", line 370, in vital_signs
+    lab_results_list = extract_vital_sings_observations(fhir_observation_bundle, 'vital-signs')
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: extract_vital_sings_observations() takes 1 positional argument but 2 were given
+[09/Jul/2025 10:29:40] ERROR [django.server:213] "GET /vital-signs/ HTTP/1.1" 500 79256

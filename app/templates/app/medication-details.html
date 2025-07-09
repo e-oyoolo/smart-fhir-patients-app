@@ -1,0 +1,16 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="content mt-4">
+        <h1>Medication List</h1>
+        <div class="ml-2"> 
+            {% for medication in medications_list %} 
+                <p>{{ forloop.counter }}. {{ medication.display }}</p>
+                <div class="ml-3">
+                    <p>Reason: {{ medication.reason }}</p>
+                    <p>Dosage: {{ medication.dosage }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

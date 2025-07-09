@@ -9,4 +9,35 @@
         <p><span style="font-weight: 600;">Date of birth : </span> {{ fhir_patient.birthDate.isostring }}</p>
         <p><span style="font-weight: 600;">Gender : </span> {{ fhir_patient.gender }}</p>
     </div>
+
+    <div class="content mt-4">
+        <h1>Medication List</h1>
+        <div class="ml-2"> 
+            {% for medication in medications_list %} 
+                <p>{{ forloop.counter }}. {{ medication.display }}</p>
+                <div class="ml-3">
+                    <p>Reason: {{ medication.reason }}</p>
+                    <p>Dosage: {{ medication.dosage }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="content mt-4">
+        <h1>Lab Results</h1>
+        <div class="ml-2"> 
+            {% for lab_result in lab_results_list %} 
+                <p>{{ lab_result.test_name }} {{ lab_result.effectiveDateTime.isostring }} {{ lab_result.value }}</p>
+            {% endfor %}
+        </div>
+    </div>   
+    
+    <div class="content mt-4">
+        <h1>Vital Signs</h1>
+        <div class="ml-2"> 
+            {% for vital_sign in vital_signs_list %} 
+                <p>{{ vital_sign.test_name }} {{ vital_sign.effectiveDateTime.isostring }} {{ vital_sign.value }}{{ vital_sign.unit }}</p>
+            {% endfor %}
+        </div>
+    </div>    
 {% endblock %}

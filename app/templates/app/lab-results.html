@@ -1,0 +1,12 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="content mt-4">
+        <h1>Lab Results</h1>
+        <div class="ml-2"> 
+            {% for lab_result in lab_results_list %} 
+                <p>{{ lab_result.test_name }} {{ lab_result.effectiveDateTime.isostring }} {{ lab_result.value }}</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

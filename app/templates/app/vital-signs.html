@@ -1,0 +1,12 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="content mt-4">
+        <h1>Vital Signs</h1>
+        <div class="ml-2"> 
+            {% for vital_sign in vital_signs_list %} 
+                <p>{{ vital_sign.test_name }} {{ vital_sign.effectiveDateTime.isostring }} {{ vital_sign.value }}{{ vital_sign.unit }}</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

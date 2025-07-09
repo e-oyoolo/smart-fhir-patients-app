@@ -5,6 +5,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from fhirclient.models.patient import Patient
+from fhirclient.models.bundle import Bundle
+from fhirclient.models.observation import Observation
 
 import secrets
 import base64
@@ -180,8 +182,206 @@ def patient_details(request):
     
     epic_identifier = get_epic_identifier(fhir_patient)
     
+    
+    medications_list = medication_details(request)
+    lab_results_list = lab_results(request)
+    vital_signs_list = vital_signs(request)
+    
     context = {
         'fhir_patient': fhir_patient,
-        'epic_identifier': epic_identifier
+        'epic_identifier': epic_identifier,
+        'medications_list':medications_list,
+        'lab_results_list':lab_results_list,
+        'vital_signs_list':vital_signs_list
     }
     return render(request, 'app/patient-details.html', context) 
+    
+def extract_medications_from_fhir_bundle(bundle_obj: Bundle):
+    medications = []
+
+    for entry in bundle_obj.entry:
+        resource = entry.resource
+        if not resource:
+            continue
+
+        # Check resource type
+        resource_type = resource.resource_type
+        if resource_type in ["MedicationRequest", "MedicationStatement"]:
+            med_info = {}
+
+            # medicationCodeableConcept
+            medication = getattr(resource, "medicationCodeableConcept", None)
+            if medication and medication.coding:
+                med_info["code"] = medication.coding[0].code
+                med_info["display"] = medication.coding[0].display
+
+            # medicationReference (optional)
+            elif hasattr(resource, "medicationReference") and resource.medicationReference.display:
+                med_info["display"] = resource.medicationReference.display
+
+            # Dosage instructions
+            if hasattr(resource, "dosageInstruction"):
+                med_info["dosage"] = resource.dosageInstruction[0].text
+
+            if hasattr(resource, "reasonCode"):
+                med_info["reason"] = resource.reasonCode[0].text
+                
+            # Status, authoredOn
+            med_info["status"] = getattr(resource, "status", None)
+            med_info["authoredOn"] = getattr(resource, "authoredOn", None)
+
+            medications.append(med_info)
+
+    return medications  
+    
+def medication_details(request):
+    token_response = request.session[os.getenv('TOKEN_RESPONSE_LOCAL_STORAGE_KEY')]
+    
+    access_token = json.loads(json.dumps(token_response))['access_token']
+    patient_id = json.loads(json.dumps(token_response))['patient']
+    
+    get_medication_url = os.getenv('FHIR_BASE_URL') + '/MedicationRequest/' + patient_id
+    get_medication_url = os.getenv('FHIR_BASE_URL') + '/MedicationRequest?subjet=' + patient_id
+    
+    headers = {
+        "Accept": "application/json",
+        'Content-Type': 'application/json',
+        "Authorization": "Bearer %s" % access_token
+    }
+    response = requests.get(get_medication_url, headers=headers)
+    
+    patient_json = response.json()
+    fhir_medication_bundle = Bundle(patient_json)
+    
+    medications_list = extract_medications_from_fhir_bundle(fhir_medication_bundle)
+    context = {
+        'medications_list': medications_list
+    }
+    return medications_list
+    # return render(request, 'app/medication-details.html', context) 
+  
+def extract_laboratory_observations(bundle: Bundle):
+    lab_observations = []
+
+    for entry in bundle.entry:
+        resource = entry.resource
+        if resource.resource_type != "Observation":
+            continue
+
+        # Check if it has a "laboratory" category
+        if resource.category:
+            for category in resource.category:
+                for coding in category.coding:
+                    if coding.code == "laboratory":
+                        # This is a lab observation — extract details
+                        obs = {}
+
+                        # Observation name
+                        if resource.code and resource.code.coding:
+                            obs["test_code"] = resource.code.coding[0].code
+                            obs["test_name"] = resource.code.coding[0].display
+
+                        # Value and unit
+                        if resource.valueQuantity:
+                            obs["value"] = resource.valueQuantity.value
+                            obs["unit"] = resource.valueQuantity.unit
+
+                        # Effective date/time
+                        obs["effectiveDateTime"] = getattr(resource, "effectiveDateTime", None)
+
+                        # Status
+                        obs["status"] = getattr(resource, "status", None)
+
+                        lab_observations.append(obs)
+                        break  # Only one match needed, skip to next entry
+
+    return lab_observations
+  
+def extract_vital_sings_observations(bundle: Bundle):
+    lab_observations = []
+
+    for entry in bundle.entry:
+        resource = entry.resource
+        if resource.resource_type != "Observation":
+            continue
+
+        # Check if it has a "laboratory" category
+        if resource.category:
+            for category in resource.category:
+                for coding in category.coding:
+                    if coding.code == "vital-signs":
+                        # This is a lab observation — extract details
+                        obs = {}
+
+                        # Observation name
+                        if resource.code and resource.code.coding:
+                            obs["test_code"] = resource.code.coding[0].code
+                            obs["test_name"] = resource.code.coding[0].display
+
+                        # Value and unit
+                        if resource.valueQuantity:
+                            obs["value"] = resource.valueQuantity.value
+                            obs["unit"] = resource.valueQuantity.unit
+
+                        # Effective date/time
+                        obs["effectiveDateTime"] = getattr(resource, "effectiveDateTime", None)
+
+                        # Status
+                        obs["status"] = getattr(resource, "status", None)
+
+                        lab_observations.append(obs)
+                        break  # Only one match needed, skip to next entry
+
+    return lab_observations 
+    
+def lab_results(request):
+    token_response = request.session[os.getenv('TOKEN_RESPONSE_LOCAL_STORAGE_KEY')]
+    
+    access_token = json.loads(json.dumps(token_response))['access_token']
+    patient_id = json.loads(json.dumps(token_response))['patient']
+    
+    get_lab_results_url = os.getenv('FHIR_BASE_URL') + '/Observation?subjet=' + patient_id + '&category=laboratory'
+    
+    headers = {
+        "Accept": "application/json",
+        'Content-Type': 'application/json',
+        "Authorization": "Bearer %s" % access_token
+    }
+    response = requests.get(get_lab_results_url, headers=headers)
+    
+    patient_json = response.json()
+    fhir_observation_bundle = Bundle(patient_json)
+    
+    lab_results_list = extract_laboratory_observations(fhir_observation_bundle)
+    context = {
+        'lab_results_list': lab_results_list
+    }
+    
+    return lab_results_list
+    # return render(request, 'app/lab-results.html', context)     
+    
+def vital_signs(request):
+    token_response = request.session[os.getenv('TOKEN_RESPONSE_LOCAL_STORAGE_KEY')]
+    
+    access_token = json.loads(json.dumps(token_response))['access_token']
+    patient_id = json.loads(json.dumps(token_response))['patient']
+    
+    get_lab_results_url = os.getenv('FHIR_BASE_URL') + '/Observation?subjet=' + patient_id + '&category=vital-signs'
+    
+    headers = {
+        "Accept": "application/json",
+        'Content-Type': 'application/json',
+        "Authorization": "Bearer %s" % access_token
+    }
+    response = requests.get(get_lab_results_url, headers=headers)
+    print(response.text)
+    patient_json = response.json()
+    fhir_observation_bundle = Bundle(patient_json)
+    
+    vital_signs_list = extract_vital_sings_observations(fhir_observation_bundle)
+    
+    return vital_signs_list
+    # context = {
+    #     'vital_signs_list': vital_signs_list
+    # }
+    # return render(request, 'app/vital-signs.html', context) 
